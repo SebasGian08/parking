@@ -22,55 +22,52 @@ class TicketsController extends Controller
     }
 
     public function list_all(Request $request)
-{
-    // Verificar si las fechas están bien formateadas
-    $desde = $request->has('desde') ? Carbon::parse($request->input('desde'))->startOfDay() : null;
-    $hasta = $request->has('hasta') ? Carbon::parse($request->input('hasta'))->endOfDay() : null;
+    {
+        // Verificar si las fechas están bien formateadas
+        $desde = $request->has('desde') ? Carbon::parse($request->input('desde'))->startOfDay() : null;
+        $hasta = $request->has('hasta') ? Carbon::parse($request->input('hasta'))->endOfDay() : null;
 
-    // Obtener el estado del filtro, si está presente (1 para Activo, 2 para Cerrado)
-    $estado = $request->has('estado') ? $request->input('estado') : null;
+        // Obtener el estado del filtro, si está presente (1 para Activo, 2 para Cerrado)
+        $estado = $request->has('estado') ? $request->input('estado') : null;
 
-    // Inicializar la consulta de tickets
-    $query = Tickets::with('vehiculo.tipo', 'user'); // Incluye las relaciones necesarias
+        // Inicializar la consulta de tickets
+        $query = Tickets::with('vehiculo.tipo', 'user'); // Incluye las relaciones necesarias
 
-    // Filtrar por estado si se proporciona
-    if ($estado) {
-        $query->where('estado', $estado); // Filtro por estado (1 o 2)
-    } else {
-        // Si no se envía estado, se filtra solo por estado = 1 (Activo)
-        $query->where('estado', 1);
+        // Filtrar por estado si se proporciona
+        if ($estado) {
+            $query->where('estado', $estado); // Filtro por estado (1 o 2)
+        } else {
+            // Si no se envía estado, se filtra solo por estado = 1 (Activo)
+            $query->where('estado', 1);
+        }
+
+        // Aplicar el filtro por fechas si están presentes
+        if ($desde && $hasta) {
+            // Validar y aplicar el filtro de fechas
+            $query->whereBetween('created_at', [$desde, $hasta]);
+        }
+
+        // Ordenar y obtener los resultados
+        $tickets = $query->orderBy('id', 'desc')->get()->map(function ($ticket) {
+            // Convertir la fecha a Carbon
+            $createdAt = Carbon::parse($ticket->created_at); // Convierte a Carbon
+            return [
+                'id' => $ticket->id,
+                'vehiculo.placa' => $ticket->vehiculo->placa, // Accede al vehículo
+                'vehiculo.tipo.nombre' => $ticket->vehiculo->tipo->nombre, // Accede al tipo del vehículo
+                'vehiculo.tipo.montoxhora' => $ticket->vehiculo->tipo->montoxhora, // Accede a la tarifa
+                'created_at' => $createdAt->format('Y-m-d H:i:s'),
+                'tiempo_inicio' => $ticket->tiempo_inicio,
+                'user.nombres' => $ticket->user->nombres,
+                'tiempo_fin' => $ticket->tiempo_fin,
+                'horas_servicio' => $ticket->horas_servicio,
+                'monto' => $ticket->monto,
+                'estado' => $ticket->estado,
+            ];
+        });
+
+        return response()->json(['data' => $tickets]);
     }
-
-    // Aplicar el filtro por fechas si están presentes
-    if ($desde && $hasta) {
-        // Validar y aplicar el filtro de fechas
-        $query->whereBetween('created_at', [$desde, $hasta]);
-    }
-
-    // Ordenar y obtener los resultados
-    $tickets = $query->orderBy('id', 'desc')->get()->map(function ($ticket) {
-        // Convertir la fecha a Carbon
-        $createdAt = Carbon::parse($ticket->created_at); // Convierte a Carbon
-        return [
-            'id' => $ticket->id,
-            'vehiculo.placa' => $ticket->vehiculo->placa, // Accede al vehículo
-            'vehiculo.tipo.nombre' => $ticket->vehiculo->tipo->nombre, // Accede al tipo del vehículo
-            'vehiculo.tipo.montoxhora' => $ticket->vehiculo->tipo->montoxhora, // Accede a la tarifa
-            'created_at' => $createdAt->format('Y-m-d H:i:s'),
-            'tiempo_inicio' => $ticket->tiempo_inicio,
-            'user.nombres' => $ticket->user->nombres,
-            'tiempo_fin' => $ticket->tiempo_fin,
-            'horas_servicio' => $ticket->horas_servicio,
-            'monto' => $ticket->monto,
-            'estado' => $ticket->estado,
-        ];
-    });
-
-    return response()->json(['data' => $tickets]);
-}
-
-
-    
 
     public function partialView($id = null)
     {

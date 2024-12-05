@@ -225,10 +225,10 @@
                                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
                                     <span class="active-item-here"></span> <i class="fa fa-car mr-5"></i>
-                                    <span>Clientes</span></a>
+                                    <span>Vehiculos</span></a>
                                 <ul class="dropdown-menu multilevel scale-up-left">
                                     <li class="nav-item"><a class="nav-link" href="{{ route('auth.vehiculos') }}"><i
-                                                class="fa fa-car mr-5"></i>Registrar Clientes</a>
+                                                class="fa fa-car mr-5"></i>Registrar Vehiculo</a>
                                     </li>
                                 </ul>
                             </li>
@@ -243,6 +243,12 @@
                                             Usuarios</a>
                                     </li>
                                 </ul>
+                            </li>
+                            <li class="nav-item {{ Route::currentRouteName() == 'auth.inicio' ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('auth.abonados') }}"><span
+                                        class="active-item-here"></span>
+                                    <i class="fa fa-bar-chart"></i> <span>Abonados</span>
+                                </a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
