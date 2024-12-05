@@ -13,8 +13,6 @@
                 <div class="modal-body">
                     @csrf
                     <input type="hidden" id="id" name="id" value="{{ $Entity != null ? $Entity->id : 0 }}">
-                    {{-- <input type="hidden" id="id" name="id" value="{{ isset($ticket) ? $ticket->id : 0 }}"> --}}
-
                     <!-- Placa -->
                     <div class="form-group">
                         <div class="row">
@@ -22,25 +20,6 @@
                             <input type="hidden" id = 'user_id' name="user_id" value="{{ $userId }}" required>
                             <input type="hidden" id="vehiculo_id" name="vehiculo_id" value="">
 
-                            <!-- Placa -->
-                            {{-- <div class="form-group col-lg-6">
-                                <label for="placa" class="m-0 label-primary">Placa <b
-                                        style="color:red;font-size:10px">(Obligatorio*)</b></label>
-                                <div class="input-group">
-                                    <input autocomplete="off" type="text" class="form-control form-control-sm"
-                                        id="placa" name="placa" placeholder="Ingresar placa" minlength="1"
-                                        required onkeypress="if(event.key === 'Enter') buscarPorPlaca()">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" style="background-color:#ffa200"
-                                            id="btnBuscarPlaca" type="button" onclick="buscarPorPlaca()">
-                                            <i class="fa fa-search"></i> Buscar
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="invalid-feedback">
-                                    Por favor ingresa una placa válida.
-                                </div>
-                            </div> --}}
                             <div class="form-group col-lg-6">
                                 <label for="placa" class="m-0 label-primary">Placa
                                     <b style="color:red;font-size:10px">(Obligatorio*)</b>
@@ -62,8 +41,6 @@
                                 <datalist id="listaPlacas">
                                     <!-- Las opciones dinámicas se añadirán aquí -->
                                 </datalist>
-
-
                                 <div class="invalid-feedback">
                                     Por favor ingresa una placa válida.
                                 </div>
@@ -84,8 +61,6 @@
                                        value="{{ isset($Entity) && $Entity->vehiculo ? $Entity->vehiculo->tipo->montoxhora : '' }}" readonly>
                                 <span data-valmsg-for="tarifa" class="text-danger"></span>
                             </div>
-                            
-
                             <!-- Hora de Inicio -->
                             <div class="col-md-6">
                                 <label for="tiempo_inicio">Tiempo de Inicio</label>
