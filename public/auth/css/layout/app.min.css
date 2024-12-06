@@ -902,13 +902,13 @@ button {
 }
 
 button.btn-primary {
-    background: #2ecc71
+    background: #007bff;
 }
 
 button.btn-primary:hover,
 button.btn-primary:active,
 button.btn-primary:focus {
-    background: #34495e !important
+    background: rgb(0, 104, 207) !important
 }
 
 button:hover,

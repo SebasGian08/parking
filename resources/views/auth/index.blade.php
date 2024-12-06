@@ -27,31 +27,33 @@
         }
 
         .content-wrapper:before {
-            background: radial-gradient(circle, rgba(0, 114, 191, 1) 37%, rgba(0, 195, 244, 1) 100%);
+            /* background: radial-gradient(circle, rgba(0, 114, 191, 1) 37%, rgba(0, 195, 244, 1) 100%); */
+            background-color: #2ecc71;
         }
 
         .main-nav {
-            background: radial-gradient(circle, rgba(0, 114, 191, 1) 37%, rgba(0, 195, 244, 1) 100%);
+            /* background: radial-gradient(circle, rgba(0, 114, 191, 1) 37%, rgba(0, 195, 244, 1) 100%); */
+            background-color: #2ecc71;
         }
 
         .active-item-here {
-            color: #34495e;
+            color: #2ecc71;
         }
 
         .table thead {
-            background-color: #34495e;
+            background-color: #2ecc71;
         }
 
         .btn-secondary {
             color: #fff;
-            background-color: #2ecc71;
-            border-color: #2ecc71;
+            background-color: #007bff;
+            border-color: #007bff;
         }
 
         .btn-secondary:hover {
             color: #fff;
-            background-color: #1cb65c;
-            border-color: #1cb65c;
+            background-color: #0069d9;
+            border-color: #0069d9;
         }
 
         div.dataTables_wrapper div.dataTables_filter input {
@@ -65,7 +67,7 @@
         }
 
         .modal.modal-fill .modal-dialog .modal-header {
-            background-color: #34495e;
+            background-color: #FFA500;
         }
 
         .modal.modal-fill {

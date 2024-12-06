@@ -64,7 +64,7 @@
                 {{-- Remaining content (totals) goes here --}}
                 <div class="col-lg-3 mb-4 zoom-container">
                     <div class="totales text-center"
-                        style="background: linear-gradient(to bottom right, #34495e, #536f8b);">
+                        style="background: linear-gradient(to bottom right, #10b981, #124e1f);">
                         <div class="title">
                             <p class="title-text" style="color:rgb(255, 255, 255)">
                                 Total de Vehiculos
@@ -89,7 +89,7 @@
                 </div>
                 <div class="col-lg-3 mb-4 zoom-container">
                     <div class="totales text-center"
-                        style="background: linear-gradient(to bottom right, #34495e, #536f8b);">
+                        style="background: linear-gradient(to bottom right, #10b981, #124e1f);">
                         <div class="title">
                             <p class="title-text" style="color:rgb(255, 255, 255)">
                                 Total de carros activos
@@ -114,7 +114,7 @@
                 </div>
                 <div class="col-lg-3 mb-4 zoom-container">
                     <div class="totales text-center"
-                        style="background: linear-gradient(to bottom right, #34495e, #536f8b);">
+                        style="background: linear-gradient(to bottom right, #10b981, #124e1f);">
                         <div class="title">
                             <p class="title-text" style="color:rgb(255, 255, 255)">
                                 Total de Tickets
