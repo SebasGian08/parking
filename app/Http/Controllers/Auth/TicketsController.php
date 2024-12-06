@@ -191,17 +191,31 @@ class TicketsController extends Controller
             $tiempo_inicio = $ticket->tiempo_inicio;
             $now = now();
 
+            // Calcular la diferencia total en días, horas y minutos
             $duracion = $now->diff($tiempo_inicio);
-            $horas_servicio = $duracion->h . 'h:' . $duracion->i . 'm';
+
+            // Total de horas considerando días completos
+            $totalHoras = $duracion->days * 24 + $duracion->h; // Días * 24 horas + las horas del día actual
+            $totalMinutos = $duracion->i;
+
+            // Si hay minutos, agregarlos a las horas
+            if ($totalMinutos > 0) {
+                $totalHoras += ceil($totalMinutos / 60); // Redondeamos los minutos a la hora más cercana
+            }
+
+            // Calcular el monto con la tarifa por hora
             $tarifa = $vehiculo->tipo->montoxhora ?? 0;
-            $monto = $tarifa * ceil($duracion->h + $duracion->i / 60);
+            $monto = $tarifa * $totalHoras;
 
+            // Calcular horas_servicio como antes, con días completos y horas
+            $horas_servicio = $duracion->days . 'd ' . $duracion->h . 'h:' . $duracion->i . 'm';
 
-            return view('auth.tickets._Calculate', compact('ticket', 'vehiculo', 'horas_servicio', 'tarifa', 'monto'));
+            return view('auth.tickets._Calculate', compact('ticket', 'vehiculo', 'horas_servicio', 'duracion', 'totalHoras', 'tarifa', 'monto'));
         } else {
             return redirect()->route('auth.tickets')->with('error', 'Ticket o vehículo no encontrado');
         }
     }
+
 
     public function confirmar(Request $request)
     {
@@ -214,10 +228,21 @@ class TicketsController extends Controller
                 $created_at = $ticket->created_at;
                 $now = now();
                 
+                // Calcular la duración total en días, horas y minutos
                 $duracion = $now->diff($created_at);
-                $horas_servicio = $duracion->h + ($duracion->i / 60);
+
+                // Total de horas considerando días completos
+                $totalHoras = $duracion->days * 24 + $duracion->h; // Días * 24 horas + las horas del día actual
+                $totalMinutos = $duracion->i;
+
+                // Si hay minutos, agregarlos a las horas
+                if ($totalMinutos > 0) {
+                    $totalHoras += ceil($totalMinutos / 60); // Redondeamos los minutos a la hora más cercana
+                }
+
+                // Calcular el monto con la tarifa por hora
                 $tarifa = $vehiculo->tipo->montoxhora ?? 0;
-                $monto = $tarifa * ceil($horas_servicio); // Asegura que redondee correctamente
+                $monto = $tarifa * $totalHoras; // Usamos el total de horas para el cálculo
 
                 // Actualizar los campos
                 $ticket->tiempo_fin = $now;

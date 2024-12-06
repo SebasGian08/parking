@@ -9,6 +9,7 @@ use BolsaTrabajo\TipoDocumento;
 use BolsaTrabajo\Planes;
 use BolsaTrabajo\Estacionamiento;
 use BolsaTrabajo\Vehiculos;
+use BolsaTrabajo\Contratos;
 use BolsaTrabajo\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
@@ -102,28 +103,50 @@ class AbonadosController extends Controller
 
 
 
-    public function store(Request $request)
+    public function storeContrato(Request $request)
     {
         $status = false;
 
-        if($request->id != 0)
-            $entity = Area::find($request->id);
-        else
-            $entity = new Area();
+        // Determinar si es una actualización o creación
+        $entity = $request->id != 0 ? Contratos::find($request->id) : new Contratos();
 
+        // Validar los datos
         $validator = Validator::make($request->all(), [
-            'nombre' => 'required|unique:areas,nombre,'.($request->id != 0 ? $request->id : "NULL").',id,deleted_at,NULL'
+            'abonado_id' => 'required',
+            'fecha_inicio' => 'required|date',
+            'fecha_fin' => 'required|date|after_or_equal:fecha_inicio',
+            'vehiculo_id' => 'required',
+            'estacionamiento_id' => 'required',
+            'plan_id' => 'required',
+            'nota' => 'required|string|max:255',
         ]);
 
-        if (!$validator->fails()){
-            $entity->nombre = trim($request->nombre);
-            if($entity->save()) $status = true;
+        if (!$validator->fails()) {
+            // Asignar los valores validados al modelo
+            $entity->abonado_id = trim($request->abonado_id);
+            $entity->fecha_inicio = $request->fecha_inicio;
+            $entity->fecha_fin = $request->fecha_fin;
+            $entity->vehiculo_id = $request->vehiculo_id;
+            $entity->estacionamiento_id = $request->estacionamiento_id;
+            $entity->plan_id = $request->plan_id;
+            $entity->nota = $request->nota;
+
+            // Intentar guardar
+            if ($entity->save()) {
+                $status = true;
+            }
         }
 
+        // Devolver respuesta JSON
         return response()->json(['Success' => $status, 'Errors' => $validator->errors()]);
     }
 
-    public function delete(Request $request)
+
+
+
+
+
+    /* public function delete(Request $request)
     {
         $status = false;
 
@@ -132,5 +155,5 @@ class AbonadosController extends Controller
         if($entity->delete()) $status = true;
 
         return response()->json(['Success' => $status]);
-    }
+    } */
 }

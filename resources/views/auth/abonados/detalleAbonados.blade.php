@@ -141,16 +141,18 @@
                             <button type="submit" class="btn btn-primary">Editar Datos Generales</button>
                         </form>
                     </div>
-                    {{-- {{-- action="{{ route('contrato.store') }}"  --}}
                     <!-- Formulario Contrato -->
                     <div class="tab-pane fade" id="contrato" role="tabpanel" aria-labelledby="contrato-tab">
-                        <form method="post" enctype="multipart/form-data" style="margin-top: 20px;">
+                        <form method="post" action="{{ route('auth.abonados.storeContrato') }}"
+                            enctype="multipart/form-data" style="margin-top: 20px;">
                             @csrf
                             <div class="container"
                                 style="border: 2px solid #dee2e6; padding: 20px; border-radius: 10px; background-color: #f9f9f9;">
                                 <!-- Título de Contrato -->
                                 <div class="row">
                                     <!-- Información de la Empresa -->
+                                    <input type="hidden" id="abonado_id" name="abonado_id"
+                                        value="{{ $Entity != null ? $Entity->id : 0 }}">
                                     <div class="col-md-1">
                                         @if ($empresa && $empresa->logo)
                                             <a href="{{ route('auth.inicio') }}" class="logo">
@@ -171,16 +173,15 @@
                                     <!-- Fechas en 2 columnas -->
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="contrato_fecha">Fecha de Inicio <span
+                                            <label for="fecha_inicio">Fecha de Inicio <span
                                                     class="text-danger">*</span></label>
-                                            <input type="date" class="form-control" id="contrato_fecha"
-                                                name="contrato_fecha" required>
+                                            <input type="date" class="form-control" id="fecha_inicio"
+                                                name="fecha_inicio" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="contrato_fecha_fin">Fecha de Fin <span
-                                                    class="text-danger">*</span></label>
-                                            <input type="date" class="form-control" id="contrato_fecha_fin"
-                                                name="contrato_fecha_fin" required>
+                                            <label for="fecha_fin">Fecha de Fin <span class="text-danger">*</span></label>
+                                            <input type="date" class="form-control" id="fecha_fin" name="fecha_fin"
+                                                required>
                                         </div>
                                     </div>
 
@@ -189,25 +190,25 @@
                                 <div class="row mt-4">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="estacionamiento">Estacionamiento</label>
-                                            <select class="form-control" id="estacionamiento" name="estacionamiento"
-                                                required>
+                                            <label for="estacionamiento">Estacionamiento <span
+                                                    class="text-danger">*</span></label>
+                                            <select class="form-control" id="estacionamiento_id"
+                                                name="estacionamiento_id" required>
                                                 <option value="">Seleccione un estacionamiento</option>
-                                                <!-- Aquí se generan dinámicamente los estacionamientos -->
                                                 @foreach ($Estacionamientos as $estacionamiento)
-                                                    <option value="{{ $estacionamiento->id }}">
+                                                    <option value="{{ $estacionamiento->id }}">+
                                                         {{ $estacionamiento->numero }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group col-lg-4">
-                                        <label for="vehiculo">Vehículo</label>
+                                        <label for="vehiculo">Vehículo <span class="text-danger">*</span></label>
                                         <div class="input-group">
                                             <!-- Input para buscar placas -->
                                             <input autocomplete="off" type="text" class="form-control form-control-sm"
-                                                id="placa" name="placa" placeholder="Ingresar placa"
-                                                list="listaPlacas" value="{{ isset($vehiculo) ? $vehiculo->placa : '' }}"
+                                                id="vehiculo_id" name="vehiculo_id" placeholder="Ingresar placa"
+                                                list="listaPlacas" value="{{ isset($vehiculo) ? $vehiculo->id : '' }}"
                                                 required>
                                         </div>
                                         <datalist id="listaPlacas">
@@ -219,9 +220,9 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="plan_servicio">Plan de Servicio</label>
-                                            <select class="form-control" id="plan_servicio" name="plan_servicio"
-                                                required>
+                                            <label for="plan_servicio">Plan de Servicio <span
+                                                    class="text-danger">*</span></label>
+                                            <select class="form-control" id="plan_id" name="plan_id" required>
                                                 <option value="">Seleccione un plan de servicio</option>
                                                 <!-- Aquí se generan dinámicamente los planes -->
                                                 @foreach ($Planes as $plan)
@@ -234,7 +235,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="nota">Nota</label>
+                                            <label for="nota">Nota <span class="text-danger">*</span></label>
                                             <textarea class="form-control" id="nota" name="nota" rows="4"></textarea>
                                         </div>
                                     </div>
@@ -242,7 +243,6 @@
 
                                 <div class="row mt-5">
                                     <div class="col-12 text-center">
-                                        <!-- Botón con estilo más formal -->
                                         <button type="submit" class="btn btn-primary btn-lg px-4 py-2"
                                             style="font-size: 14px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
                                             <strong>Generar Contrato</strong>
@@ -288,7 +288,7 @@
     <script>
         $(document).ready(function() {
             // Llamada AJAX para obtener las placas cuando se escribe en el campo
-            $('#placa').on('input', function() {
+            $('#vehiculo_id').on('input', function() {
                 var placa = $(this).val(); // Obtiene el valor del campo de placa
 
                 if (placa.length >= 1) { // Inicia la búsqueda si se escribe al menos 3 caracteres

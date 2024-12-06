@@ -114,11 +114,10 @@ Route::group(['prefix' => 'auth', 'middleware' => 'auth:web'], function () {
         Route::get('/list_all', 'Auth\AbonadosController@list_all')->name('auth.abonados.list_all');
         Route::get('/partialViewDetalle/{id}', 'Auth\AbonadosController@partialViewDetalle')->name('auth.abonados.partialViewDetalle');
         Route::post('/update', 'Auth\AbonadosController@update')->name('auth.abonados.update');
+       Route::post('/storeContrato', 'Auth\AbonadosController@storeContrato')->name('auth.abonados.storeContrato');
 
-
-        Route::post('/store', 'Auth\VehiculosController@store')->name('auth.vehiculos.store');
-        Route::post('/delete', 'Auth\VehiculosController@delete')->name('auth.vehiculos.delete');
-        Route::get('/partialView/{id}', 'Auth\VehiculosController@partialView')->name('auth.vehiculos.create');
+        /* Route::post('/delete', 'Auth\VehiculosController@delete')->name('auth.vehiculos.delete');
+        Route::get('/partialView/{id}', 'Auth\VehiculosController@partialView')->name('auth.vehiculos.create'); */
     });
 
 });
