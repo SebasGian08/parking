@@ -122,14 +122,14 @@
         <header class="main-header">
             <div class="inside-header">
 
-                {{-- @if ($empresa && $empresa->logo)
+                @if ($empresa && $empresa->logo)
                     <a href="{{ route('auth.inicio') }}" class="logo">
                         <span class="logo-m">
                             <img src="{{ asset($empresa->logo) }}" alt="Logo de la Empresa" class="light-logo"
                                 style="max-width: 50px; max-height: 150px;">
                         </span>
                     </a>
-                @endif --}}
+                @endif
                 <nav class="navbar navbar-static-top">
                     <a href="#" class="sidebar-toggle d-block d-lg-none" data-toggle="push-menu" role="button"
                         style="color: #363d4a;">
