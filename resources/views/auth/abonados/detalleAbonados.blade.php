@@ -196,7 +196,7 @@
                                                 name="estacionamiento_id" required>
                                                 <option value="">Seleccione un estacionamiento</option>
                                                 @foreach ($Estacionamientos as $estacionamiento)
-                                                    <option value="{{ $estacionamiento->id }}">+
+                                                    <option value="{{ $estacionamiento->id }}">
                                                         {{ $estacionamiento->numero }}</option>
                                                 @endforeach
                                             </select>
