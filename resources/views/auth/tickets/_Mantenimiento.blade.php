@@ -75,49 +75,88 @@
                 </div>
                 <div style="background-color: #f1f1f175">
                     <div id="ticket-preview"
-                        style="display:none; width: 300px; margin: 0 auto; font-family: Arial, sans-serif; background: #ffffff; padding: 20px; text-align: center; border: 1px dashed #b8b8b8; border-radius: 8px;">
+                        style="display:none; width: 250px; margin: 20px auto; font-family: Arial, sans-serif; background: #ffffff; padding: 10px; border-radius: 8px; font-size: 9px; line-height: 1.2; word-wrap: break-word;">
+
+                        <!-- Título y dirección centrados -->
                         <h3
-                            style="margin: 0; font-size: 18px; font-weight: bold; padding-bottom: 15px; text-align: center;">
+                            style="margin: 0; font-size: 12px; font-weight: bold; padding-bottom: 5px; text-align: center; word-wrap: break-word;">
                             {{ isset($empresa) && $empresa ? $empresa->nombre : 'Empresa no disponible' }}
                         </h3>
                         <p
-                            style="margin: 0; font-size: 14px; font-weight: bold; padding-bottom: 10px; text-align: center;">
+                            style="margin: 0; font-size: 10px; font-weight: bold; padding-bottom: 10px; text-align: center; word-wrap: break-word;">
                             {{ isset($empresa) && $empresa ? $empresa->direccion : 'Dirección no disponible' }}
                         </p>
-                        <p
-                            style="margin: 0; font-size: 14px; font-weight: bold; padding-bottom: 15px; text-align: center;">
-                            TICKET DE INGRESO</p>
 
-                        <p style="font-size: 12px; text-align:left; padding-bottom: 5px; margin: 0;"><span
-                                style="font-weight: bold;">Cliente: </span><span id="ticket-cliente">DIVERSOS</span></p>
-                        <p style="font-size: 12px; text-align:left; padding-bottom: 5px; margin: 0;"><span
-                                style="font-weight: bold;">Cajero: </span><span
+                        <!-- Título de Ticket -->
+                        <p
+                            style="margin: 0; font-size: 10px; font-weight: bold; padding-bottom: 10px; text-align: center; word-wrap: break-word;">
+                            TICKET DE INGRESO
+                        </p>
+
+                        <!-- Información cliente y cajero -->
+                        <p
+                            style="font-size: 9px; text-align:left; padding-bottom: 5px; margin: 0; word-wrap: break-word;">
+                            <span style="font-weight: bold;">Cliente: </span><span id="ticket-cliente">DIVERSOS</span>
+                        </p>
+                        <p
+                            style="font-size: 9px; text-align:left; padding-bottom: 5px; margin: 0; word-wrap: break-word;">
+                            <span style="font-weight: bold;">Cajero: </span><span
                                 id="ticket-cajero">{{ isset($User) && $User ? $User->nombres : 'Usuario no disponible' }}</span>
                         </p>
 
-                        <hr style="border: 1px dashed #000; width: 100%; margin: 10px 0;">
+                        <!-- Línea separadora -->
+                        <svg width="100%" height="1">
+                            <line x1="0" y1="0" x2="100%" y2="0" stroke="#000"
+                                stroke-width="1" stroke-dasharray="5,5" />
+                        </svg>
 
-                        <p style="font-size: 12px; text-align:left; padding-bottom: 5px; margin: 0;"><span
-                                style="font-weight: bold;">Nº Placa: </span><span id="ticket-placa"></span></p>
-                        <p style="font-size: 12px; text-align:left; padding-bottom: 5px; margin: 0;"><span
-                                style="font-weight: bold;">F. Emisión: </span><span id="ticket-fecha"></span></p>
-                        <p style="font-size: 12px; text-align:left; padding-bottom: 5px; margin: 0;"><span
-                                style="font-weight: bold;">Hora Ing.: </span><span id="ticket-hora-ingreso"></span>
+
+                        <!-- Información adicional -->
+                        <p
+                            style="font-size: 9px; text-align:left; padding-bottom: 5px; margin: 0; word-wrap: break-word;">
+                            <span style="font-weight: bold;">Nº Placa: </span><span id="ticket-placa"></span>
                         </p>
-                        <!-- Agregar Tipo y Tarifa juntos con un guion después de la Hora de Ingreso -->
-                        <p style="font-size: 12px; text-align:left; padding-bottom: 5px; margin: 0;">
+                        <p
+                            style="font-size: 9px; text-align:left; padding-bottom: 5px; margin: 0; word-wrap: break-word;">
+                            <span style="font-weight: bold;">F. Emisión: </span><span id="ticket-fecha"></span>
+                        </p>
+                        <p
+                            style="font-size: 9px; text-align:left; padding-bottom: 5px; margin: 0; word-wrap: break-word;">
+                            <span style="font-weight: bold;">Hora Ing.: </span><span id="ticket-hora-ingreso"></span>
+                        </p>
+
+                        <!-- Tipo y tarifa -->
+                        <p
+                            style="font-size: 9px; text-align:left; padding-bottom: 5px; margin: 0; word-wrap: break-word;">
                             <span id="ticket-tipo"></span> - <span id="ticket-tarifa"></span> S/ <span
                                 id="ticket-tarifa-monto"></span> X HORA
                         </p>
-                        <hr style="border: 1px dashed #000; width: 100%; margin: 10px 0;">
-                        <p style="font-size: 12px; text-align: center; padding-top: 15px; margin: 0;">HORARIO DE LUNES
-                            A SABADO DE 8:00 A.M A 7:30 P.M</p>
-                        <br>
-                        <div id="barcode-container" style="margin-top: 15px; text-align: center;">
-                            <svg id="barcode"></svg> <!-- Aquí se generará el código de barras -->
-                        </div>
 
-                        <br><br><br><br>
+                        <!-- Línea separadora -->
+                        <svg width="100%" height="1">
+                            <line x1="0" y1="0" x2="100%" y2="0" stroke="#000"
+                                stroke-width="1" stroke-dasharray="5,5" />
+                        </svg>
+
+
+                        <!-- Horario de operación centrado -->
+                        <p
+                            style="font-size: 9px; text-align: center; padding-top: 10px; margin: 0; word-wrap: break-word;">
+                            HORARIO DE LUNES A SABADO DE 8:00 A.M A 7:30 P.M
+                        </p>
+
+                        <br>
+
+                        <!-- Código de barras centrado -->
+                        <div id="barcode-container" style="text-align: center; max-width: 100%; overflow: hidden;">
+                            <svg id="barcode"></svg>
+                            <!-- Aquí se generará el código de barras -->
+                        </div>
+                        <style>
+                            #barcode {
+                                width: 150px;
+                            }
+                        </style>
                     </div>
                 </div>
                 <br><br>
@@ -144,6 +183,7 @@
 </div>
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
 
@@ -228,49 +268,46 @@
     }
 
     function imprimirTicket() {
-        const ticketPreview = document.getElementById("ticket-preview").innerHTML;
+        const ticketPreview = document.getElementById("ticket-preview");
 
-        // Crear un iframe temporal para la impresión
-        const iframe = document.createElement("iframe");
-        document.body.appendChild(iframe);
+        // Usar html2pdf para generar el PDF
+        const opt = {
+            margin: 5, // Reducir los márgenes
+            filename: 'ticket.pdf',
+            image: {
+                type: 'jpeg',
+                quality: 0.98
+            },
+            html2canvas: {
+                scale: 2, // Mantener la escala moderada para mejorar la calidad sin que sea demasiado grande
+                dpi: 300, // Aumentar la calidad de la imagen
+                letterRendering: true // Asegura que las fuentes sean renderizadas correctamente
+            },
+            jsPDF: {
+                unit: 'mm',
+                format: 'a7', // El formato 'a7' es más pequeño, ajusta el contenido
+                orientation: 'portrait', // Asegura que el ticket esté en modo vertical
+                compress: true // Comprimir el PDF generado para reducir su tamaño
+            }
+        };
 
-        // Estilo del iframe para que no sea visible
-        iframe.style.position = "absolute";
-        iframe.style.width = "0";
-        iframe.style.height = "0";
-        iframe.style.border = "none";
+        // Llamar a html2pdf para convertir el ticket en PDF y obtener el archivo en formato Blob
+        html2pdf().from(ticketPreview).set(opt).output('blob').then(function(blob) {
+            // Crear una URL para el Blob (el PDF generado)
+            const url = URL.createObjectURL(blob);
 
-        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-        iframeDoc.open();
-        iframeDoc.write(`
-        <html>
-            <head>
-                <style>
-                    @page { size: 57mm 35mm; margin: 0; }
-                    body { font-family: Arial, sans-serif; font-size: 12px; margin: 0; padding: 0; }
-                    .ticket-container {
-                        width: 57mm;
-                        padding: 10px;
-                        text-align: center;
-                    }
-                    .ticket-container p { margin: 0; padding: 2px 0; font-size: 12px; }
-                    .ticket-container hr { border: 1px dashed #b8b8b8; margin: 5px 0; }
-                </style>
-            </head>
-            <body>
-                <div class="ticket-container">${ticketPreview}</div>
-            </body>
-        </html>
-    `);
-        iframeDoc.close();
+            // Abrir el archivo PDF en una nueva ventana o pestaña
+            const nuevaVentana = window.open(url, '_blank');
 
-        // Llamar a la impresión en el iframe
-        iframe.contentWindow.focus();
-        iframe.contentWindow.print();
-
-        // Eliminar el iframe tras la impresión
-        setTimeout(() => document.body.removeChild(iframe), 500);
+            // Si deseas agregar un botón para imprimir en la nueva ventana
+            nuevaVentana.onload = function() {
+                nuevaVentana.print();
+            };
+        });
     }
+
+
+
 
 
 

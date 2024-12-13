@@ -27,21 +27,21 @@
         }
 
         .content-wrapper:before {
-            /* background: radial-gradient(circle, rgba(0, 114, 191, 1) 37%, rgba(0, 195, 244, 1) 100%); */
-            background-color: #2ecc71;
+            background: radial-gradient(circle, rgba(0, 114, 191, 1) 37%, rgba(0, 195, 244, 1) 100%);
+            /* background-color: #2ecc71; */
         }
 
         .main-nav {
-            /* background: radial-gradient(circle, rgba(0, 114, 191, 1) 37%, rgba(0, 195, 244, 1) 100%); */
-            background-color: #2ecc71;
+            background: radial-gradient(circle, rgba(0, 114, 191, 1) 37%, rgba(0, 195, 244, 1) 100%);
+           /*  background-color: #2ecc71; */
         }
 
         .active-item-here {
-            color: #2ecc71;
+            color: #007bff;
         }
 
         .table thead {
-            background-color: #2ecc71;
+            background-color: #007bff;
         }
 
         .btn-secondary {

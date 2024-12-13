@@ -64,7 +64,7 @@
                 {{-- Remaining content (totals) goes here --}}
                 <div class="col-lg-3 mb-4 zoom-container">
                     <div class="totales text-center"
-                        style="background: linear-gradient(to bottom right, #10b981, #124e1f);">
+                        style="background: linear-gradient(to bottom right, #0047b1, #0066ff);">
                         <div class="title">
                             <p class="title-text" style="color:rgb(255, 255, 255)">
                                 Total de Vehiculos
@@ -89,7 +89,7 @@
                 </div>
                 <div class="col-lg-3 mb-4 zoom-container">
                     <div class="totales text-center"
-                        style="background: linear-gradient(to bottom right, #10b981, #124e1f);">
+                        style="background: linear-gradient(to bottom right, #0047b1, #0066ff);">
                         <div class="title">
                             <p class="title-text" style="color:rgb(255, 255, 255)">
                                 Total de carros activos
@@ -114,7 +114,7 @@
                 </div>
                 <div class="col-lg-3 mb-4 zoom-container">
                     <div class="totales text-center"
-                        style="background: linear-gradient(to bottom right, #10b981, #124e1f);">
+                    style="background: linear-gradient(to bottom right, #0047b1, #0066ff);">
                         <div class="title">
                             <p class="title-text" style="color:rgb(255, 255, 255)">
                                 Total de Tickets
@@ -178,6 +178,7 @@
 
     <script type="text/javascript">
         var TotalTicketsPorDia = @json($TotalTicketsPorDia);
+
         function transformData(data, isTicket = false) {
             return data.map(item => {
                 const value = isTicket ? Number(item.total_tickets) : Number(item.faltas); // Convertir a número
