@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-12-2024 a las 21:27:50
+-- Tiempo de generación: 17-12-2024 a las 21:26:57
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 7.3.33
 
@@ -48,85 +48,6 @@ CREATE TABLE `abonados` (
 
 INSERT INTO `abonados` (`id`, `tipo_doc`, `num_doc`, `razon_social`, `direccion`, `tel`, `email`, `observaciones`, `estado`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, '2', '74146165', 'SEBASTIAN SAC', 'Pasaje Rosita', '987561212', 'a@gmail.com', 'a', '1', '2024-12-05 15:23:03', NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `asistencias`
---
-
-CREATE TABLE `asistencias` (
-  `id` bigint(20) NOT NULL,
-  `dni` varchar(11) NOT NULL,
-  `tipo_id` int(11) DEFAULT NULL,
-  `hora_entrada` time DEFAULT current_timestamp(),
-  `hora_salida` time DEFAULT NULL,
-  `total_horas` varchar(5) DEFAULT NULL,
-  `latitud` varchar(250) DEFAULT NULL,
-  `longitud` varchar(250) DEFAULT NULL,
-  `latitud_salida` varchar(250) DEFAULT NULL,
-  `longitud_salida` varchar(250) DEFAULT NULL,
-  `ip_address` varchar(250) DEFAULT NULL,
-  `ip_address_salida` varchar(250) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `asistencias`
---
-
-INSERT INTO `asistencias` (`id`, `dni`, `tipo_id`, `hora_entrada`, `hora_salida`, `total_horas`, `latitud`, `longitud`, `latitud_salida`, `longitud_salida`, `ip_address`, `ip_address_salida`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '74146165', 1, NULL, NULL, NULL, '-16.5937152', '-72.7678976', NULL, NULL, '127.0.0.1', NULL, '2022-10-09 14:49:42', NULL, '2024-11-13 18:12:52'),
-(2, '06824493', 1, '11:08:30', NULL, NULL, '-16.5937152', '-72.7678976', NULL, NULL, '127.0.0.1', NULL, '2024-10-09 16:08:30', NULL, '2024-11-13 18:12:49'),
-(3, '74146165', 1, '15:31:04', '15:31:12', NULL, '-16.5937152', '-72.7678976', '-16.5937152', '-72.7678976', '127.0.0.1', '127.0.0.1', '2024-10-10 20:31:04', NULL, '2024-11-13 18:12:46'),
-(4, '74146165', 1, '09:22:45', '18:12:10', NULL, '-16.5937152', '-72.7678976', '-11.90619580808087', '-77.04270970285535', '127.0.0.1', '179.6.91.104', '2024-10-11 14:22:45', NULL, '2024-11-13 18:12:43'),
-(5, '74146165', 1, '14:11:04', '14:27:55', NULL, '-12.05237749309523', '-77.03893876859017', '-16.5937152', '-72.7678976', '179.7.92.118', '190.116.43.197', '2024-10-14 19:11:04', NULL, '2024-11-13 18:12:40'),
-(6, '74146165', 1, '08:17:35', NULL, NULL, '-16.5937152', '-72.7678976', NULL, NULL, '190.116.43.197', NULL, '2024-10-18 13:17:35', NULL, '2024-11-13 18:12:38'),
-(7, '74146165', 1, '08:38:30', NULL, NULL, '-12.04224', '-77.0342912', NULL, NULL, '190.116.43.197', NULL, '2024-10-22 13:38:30', NULL, '2024-11-13 18:12:35'),
-(8, '74146165', 1, '08:43:05', NULL, NULL, '-12.04224', '-77.0342912', NULL, NULL, '190.116.43.197', NULL, '2024-10-24 13:43:05', NULL, '2024-11-13 18:12:28'),
-(9, '74146165', 1, '22:34:39', NULL, NULL, '-11.894784', '-77.0179072', NULL, NULL, '179.6.170.187', NULL, '2024-10-26 03:34:39', NULL, '2024-11-13 18:12:26'),
-(10, '74146165', 1, '22:36:36', NULL, NULL, '-11.894784', '-77.0179072', NULL, NULL, '179.6.170.187', NULL, '2024-10-26 03:36:36', NULL, '2024-11-13 18:12:23'),
-(11, '74146165', 1, '22:38:49', NULL, NULL, '-11.894784', '-77.0179072', NULL, NULL, '179.6.170.187', NULL, '2024-10-26 03:38:49', NULL, '2024-11-13 18:12:19'),
-(12, '74146165', 1, '22:38:53', NULL, NULL, '-11.894784', '-77.0179072', NULL, NULL, '179.6.170.187', NULL, '2024-10-26 03:38:53', NULL, '2024-11-13 18:12:16'),
-(13, '74146165', 1, '22:39:01', NULL, NULL, '-11.894784', '-77.0179072', NULL, NULL, '179.6.170.187', NULL, '2024-10-26 03:39:01', NULL, '2024-11-13 18:12:14'),
-(14, '06824493', 1, '08:03:14', NULL, NULL, '-12.058624', '-77.037568', NULL, NULL, '190.116.43.197', NULL, '2024-10-26 13:03:14', NULL, '2024-11-13 18:12:12'),
-(15, '74146165', 1, '11:51:02', NULL, NULL, '-12.058624', '-77.0408448', NULL, NULL, '190.116.43.197', NULL, '2024-10-28 16:51:02', NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `asistentes`
---
-
-CREATE TABLE `asistentes` (
-  `id` bigint(11) NOT NULL,
-  `dni` varchar(15) DEFAULT NULL,
-  `nombre` varchar(100) NOT NULL,
-  `apellido` varchar(100) NOT NULL,
-  `fecha_nac` varchar(100) DEFAULT NULL,
-  `distrito_id` int(11) NOT NULL,
-  `direccion` varchar(250) DEFAULT NULL,
-  `tel` int(10) DEFAULT NULL,
-  `genero` varchar(20) NOT NULL,
-  `celula_id` int(11) NOT NULL,
-  `estado` int(11) NOT NULL DEFAULT 1,
-  `foto` varchar(250) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `asistentes`
---
-
-INSERT INTO `asistentes` (`id`, `dni`, `nombre`, `apellido`, `fecha_nac`, `distrito_id`, `direccion`, `tel`, `genero`, `celula_id`, `estado`, `foto`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '74146165', 'Sebastian', 'Vasquez Wong', '2024-09-16', 3, 'jr pacifico', 987654321, 'masculino', 1, 1, 'uploads/fotos/1726495798.jpg', '2024-09-11 15:01:39', NULL, NULL),
-(2, NULL, 'Adrian Alexus', 'Sifuentes', '2024-09-18', 326, 'Jr pacifico', 987654455, 'femenino', 1, 1, 'uploads/fotos/1726264308.png', '2024-09-13 17:43:05', NULL, NULL),
-(3, NULL, 'belen', 'llanos', '1988-11-08', 340, 'arica con junin', 987654321, 'masculino', 4, 2, 'uploads/fotos/1726496930.jpg', '2024-09-13 19:09:21', NULL, NULL),
-(4, NULL, 'belen', 'llanos', '2024-09-13', 340, 'arica con junin', 987654321, 'femenino', 4, 1, 'uploads/fotos/UVD1_66e48dfaec2e2.png', '2024-09-13 19:09:46', NULL, '2024-09-13 21:10:52');
 
 -- --------------------------------------------------------
 
@@ -244,7 +165,9 @@ CREATE TABLE `contratos` (
 --
 
 INSERT INTO `contratos` (`id`, `abonado_id`, `vehiculo_id`, `plan_id`, `fecha_inicio`, `fecha_fin`, `estacionamiento_id`, `nota`, `estado_pago`, `estado`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '1', '1', '1', '2024-12-05 19:28:40', '2025-01-31 19:28:40', '1', 'aaaa', '1', '1', '2024-12-05 19:29:43', NULL, NULL);
+(1, '1', '1', '1', '2024-12-05 19:28:40', '2025-01-31 19:28:40', '1', 'aaaa', '1', '1', '2024-12-05 19:29:43', NULL, NULL),
+(2, '1', 'A6D561', '1', '2024-12-06 05:00:00', '2025-01-06 05:00:00', '1', 'prueba', NULL, '1', '2024-12-06 17:32:13', NULL, NULL),
+(3, '1', 'BWA813', '1', '2024-11-04 05:00:00', '2025-11-04 05:00:00', '2', 'mensual pago', NULL, '1', '2024-12-06 17:33:10', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -837,7 +760,7 @@ CREATE TABLE `empresa` (
 --
 
 INSERT INTO `empresa` (`id`, `nombre`, `ruc`, `direccion`, `email`, `web`, `tel`, `logo`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'PARKINGMIX', '10646165651', 'AV ARGENTINA 614', 'correo@gmail.com', 'https://grupocodware.com/', '987654321', 'uploads/fotos/prefix_674e265a7d9e0.png', '2024-10-19 14:59:01', NULL, NULL);
+(1, 'INSTITUTO ARZOBISPO LOAYZA', '10646165651', 'AV ARGENTINA 614', 'correo@gmail.com', 'https://grupocodware.com/', '987654321', 'uploads/fotos/prefix_674e265a7d9e0.png', '2024-10-19 14:59:01', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -869,31 +792,6 @@ INSERT INTO `estacionamientos` (`id`, `codigo`, `numero`, `piso`, `id_user`, `ob
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `extras`
---
-
-CREATE TABLE `extras` (
-  `id` bigint(11) NOT NULL,
-  `dni` varchar(11) DEFAULT NULL,
-  `horas` varchar(50) DEFAULT NULL,
-  `minutos` varchar(50) DEFAULT NULL,
-  `documento` varchar(250) DEFAULT NULL,
-  `estado` int(5) NOT NULL DEFAULT 0,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `extras`
---
-
-INSERT INTO `extras` (`id`, `dni`, `horas`, `minutos`, `documento`, `estado`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '74146165', '8', '40', NULL, 2, '2024-10-11 20:27:22', NULL, '2024-11-13 18:13:05');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `horarios`
 --
 
@@ -914,30 +812,6 @@ INSERT INTO `horarios` (`id`, `ingreso`, `salida`, `created_at`, `updated_at`, `
 (1, '08:00:00', '17:00:00', '2024-10-09 14:05:24', NULL, NULL),
 (2, '13:00:00', '21:00:00', '2024-10-09 14:06:55', NULL, '2024-11-13 18:11:53'),
 (3, '08:00:00', '12:00:00', '2024-10-09 14:07:21', NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `memorandum`
---
-
-CREATE TABLE `memorandum` (
-  `id` bigint(11) NOT NULL,
-  `dni` varchar(11) NOT NULL,
-  `nombres` varchar(250) NOT NULL,
-  `logo` varchar(250) DEFAULT NULL,
-  `asunto` varchar(500) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `memorandum`
---
-
-INSERT INTO `memorandum` (`id`, `dni`, `nombres`, `logo`, `asunto`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '74146165', 'Sebastián Vasquez', NULL, 'Es fundamental mantener una buena comunicación sobre cualquier dificultad que pueda surgir, así como el impacto que esto pueda tener en el equipo y en los proyectos en curso', '2024-10-26 03:37:49', NULL, '2024-11-13 18:13:34');
 
 -- --------------------------------------------------------
 
@@ -1108,25 +982,7 @@ CREATE TABLE `tickets` (
 --
 
 INSERT INTO `tickets` (`id`, `vehiculo_id`, `tiempo_inicio`, `user_id`, `tiempo_fin`, `horas_servicio`, `monto`, `estado`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '4', '0000-00-00 00:00:00', '1', '2024-12-04 15:03:50', '01:00:00', '115', 2, '2024-12-03 16:59:16', NULL, NULL),
-(2, '6', '2024-12-05 14:49:59', '1', NULL, '01:00:00', NULL, 1, '2024-12-03 17:28:44', NULL, NULL),
-(3, '6', '0000-00-00 00:00:00', '1', '2024-12-05 14:49:54', '01:00:00', '88', 2, '2024-12-03 17:32:23', NULL, NULL),
-(4, '6', '0000-00-00 00:00:00', '1', '2024-12-04 20:19:48', '01:00:00', '96', 2, '2024-12-03 21:09:53', NULL, NULL),
-(5, '4', '0000-00-00 00:00:00', '1', '2024-12-05 13:44:04', '01:00:00', '85', 2, '2024-12-03 21:17:18', NULL, NULL),
-(6, '4', '0000-00-00 00:00:00', '1', '2024-12-05 14:49:51', '01:00:00', '120', 2, '2024-12-04 15:12:06', NULL, NULL),
-(7, '1', '0000-00-00 00:00:00', '1', '2024-12-05 13:44:01', '01:00:00', '110', 2, '2024-12-04 15:48:07', NULL, NULL),
-(8, '4', '2024-12-04 19:10:39', '1', '2024-12-04 19:34:34', '01:00:00', '5', 2, '2024-12-03 19:27:41', NULL, NULL),
-(9, '6', '2024-12-04 19:51:22', '1', '2024-12-05 13:43:59', '01:00:00', '72', 2, '2024-12-04 19:51:34', NULL, NULL),
-(10, '4', '2024-12-04 20:17:40', '1', '2024-12-05 14:49:49', '01:00:00', '95', 2, '2024-12-04 20:17:42', NULL, NULL),
-(11, '1', '2024-12-04 20:17:54', '1', '2024-12-05 14:49:47', '01:00:00', '95', 2, '2024-12-04 20:17:58', NULL, NULL),
-(12, '1', '2024-12-04 20:18:01', '1', '2024-12-05 14:49:44', '01:00:00', '95', 2, '2024-12-04 20:18:03', NULL, NULL),
-(13, '1', '2024-12-04 20:18:07', '1', '2024-12-05 13:43:57', '01:00:00', '90', 2, '2024-12-04 20:18:08', NULL, NULL),
-(14, '1', '2024-12-04 20:18:12', '1', '2024-12-04 20:19:52', '01:00:00', '5', 2, '2024-12-04 20:18:13', NULL, NULL),
-(15, '6', '2024-12-05 13:23:32', '1', '2024-12-05 14:49:42', '01:00:00', '8', 2, '2024-12-05 13:23:37', NULL, NULL),
-(16, '6', '2024-12-05 14:41:15', '1', '2024-12-05 14:49:39', '01:00:00', '4', 2, '2024-12-05 14:41:18', NULL, NULL),
-(17, '6', '2024-12-05 14:41:25', '1', '2024-12-05 14:49:37', '01:00:00', '4', 2, '2024-12-05 14:41:26', NULL, NULL),
-(18, '6', '2024-12-05 14:49:24', '1', '2024-12-05 14:49:35', '01:00:00', '4', 2, '2024-12-05 14:41:34', NULL, NULL),
-(19, '1', '2024-12-05 14:49:14', '1', NULL, '01:00:00', NULL, 1, '2024-12-05 14:41:54', NULL, NULL);
+(19, '1', '2024-12-05 13:49:14', '1', '2024-12-06 20:11:59', '01:00:00', '150', 2, '2024-12-05 14:41:54', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1206,7 +1062,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `profile_id`, `nombres`, `email`, `email_verified_at`, `password`, `remember_token`, `estado`, `online`, `inicio_sesion`, `cerrar_sesion`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 'Sebastian Vásquez', 'admin', NULL, '$2y$10$KABbWAD63KNjBVg/eIbNzeg7JzwT7bpwTeERNxV54seGFWWO/Zwea', NULL, '1', '1', '24-12-05 08:23:08', '24-12-04 04:24:46', NULL, '2024-12-05 13:23:08', NULL),
+(1, 1, 'Sebastian Vásquez', 'admin', NULL, '$2y$10$KABbWAD63KNjBVg/eIbNzeg7JzwT7bpwTeERNxV54seGFWWO/Zwea', NULL, '1', '1', '24-12-17 03:23:39', '24-12-04 04:24:46', NULL, '2024-12-17 20:23:39', NULL),
 (2, 2, 'Pablo Vera', 'pablo', NULL, '$2y$10$e8EiL7ra1yVEmgnCBjdxF.3euOOFmrHU5mo1ukwkjHiom5swOnemi', NULL, '1', '0', NULL, NULL, '2024-09-18 08:23:27', '2024-10-11 16:33:47', '2024-10-11 16:33:47'),
 (3, 2, 'Belén Llanos', 'belen', NULL, '$2y$10$zvohZLo.vpWMRZVy1uL0WuZ0EWZiCleqHSVbSaMuAI2k76uf25Tni', NULL, '1', '1', '24-10-03 12:41:19', '24-09-24 12:19:25', '2024-09-19 10:49:31', '2024-10-11 16:33:50', '2024-10-11 16:33:50'),
 (4, 3, 'Graciela Becerra', 'graciela', NULL, '$2y$10$wrIbQTe5hZyOsi36XKPhJOt5mJBBIZCwjVOMWpVyZFMV.776plcuC', NULL, '1', '0', NULL, NULL, '2024-09-19 10:49:59', '2024-10-11 16:33:52', '2024-10-11 16:33:52'),
@@ -1261,18 +1117,6 @@ INSERT INTO `vehiculos` (`id`, `placa`, `tipo_id`, `modelo`, `marca`, `color`, `
 -- Indices de la tabla `abonados`
 --
 ALTER TABLE `abonados`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `asistencias`
---
-ALTER TABLE `asistencias`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `asistentes`
---
-ALTER TABLE `asistentes`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1331,21 +1175,9 @@ ALTER TABLE `estacionamientos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `extras`
---
-ALTER TABLE `extras`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indices de la tabla `horarios`
 --
 ALTER TABLE `horarios`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `memorandum`
---
-ALTER TABLE `memorandum`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1414,18 +1246,6 @@ ALTER TABLE `abonados`
   MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `asistencias`
---
-ALTER TABLE `asistencias`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- AUTO_INCREMENT de la tabla `asistentes`
---
-ALTER TABLE `asistentes`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
 -- AUTO_INCREMENT de la tabla `avatars`
 --
 ALTER TABLE `avatars`
@@ -1453,7 +1273,7 @@ ALTER TABLE `configuracions`
 -- AUTO_INCREMENT de la tabla `contratos`
 --
 ALTER TABLE `contratos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `distritos`
@@ -1480,22 +1300,10 @@ ALTER TABLE `estacionamientos`
   MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `extras`
---
-ALTER TABLE `extras`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT de la tabla `horarios`
 --
 ALTER TABLE `horarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de la tabla `memorandum`
---
-ALTER TABLE `memorandum`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`

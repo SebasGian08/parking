@@ -135,28 +135,21 @@
                         <!-- Línea separadora -->
                         <svg width="100%" height="1">
                             <line x1="0" y1="0" x2="100%" y2="0" stroke="#000"
-                                stroke-width="1" stroke-dasharray="5,5" />
+                                stroke-width="1" stroke-dasharray="5,5"/>
                         </svg>
 
 
                         <!-- Horario de operación centrado -->
-                        <p
-                            style="font-size: 9px; text-align: center; padding-top: 10px; margin: 0; word-wrap: break-word;">
+                        <p style="font-size: 9px; text-align: center; padding-top: 10px; margin: 0; word-wrap: break-word;">
                             HORARIO DE LUNES A SABADO DE 8:00 A.M A 7:30 P.M
                         </p>
 
                         <br>
 
                         <!-- Código de barras centrado -->
-                        <div id="barcode-container" style="text-align: center; max-width: 100%; overflow: hidden;">
-                            <svg id="barcode"></svg>
-                            <!-- Aquí se generará el código de barras -->
-                        </div>
-                        <style>
-                            #barcode {
-                                width: 150px;
-                            }
-                        </style>
+                        <svg id="barcode"
+                            style="display: block; margin: 10px auto; width: 150px; height: auto;"></svg>
+
                     </div>
                 </div>
                 <br><br>
