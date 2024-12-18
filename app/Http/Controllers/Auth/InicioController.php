@@ -31,7 +31,6 @@ class InicioController extends Controller
             $totalTickets = $this->getTotalTickets($fechaDesde, $fechaHasta);
         
             $TotalTicketsPorDia = $this->getTotalTicketsPorDia($fechaDesde, $fechaHasta);
-            $getTopFaltas = $this->getTopFaltas($fechaDesde,$fechaHasta);
 
         
             // Pasar los datos a la vista 'auth.inicio.index'
@@ -39,7 +38,7 @@ class InicioController extends Controller
                 Auth::guard('web')->user()->profile_id == \BolsaTrabajo\App::$PERFIL_ADMINISTRADOR ||
                 Auth::guard('web')->user()->profile_id == \BolsaTrabajo\App::$PERFIL_SUPERVISOR
                 ) {
-                return view('auth.inicio.index', compact('totalVehiculos','totalCarrosActivos','totalTickets','TotalTicketsPorDia','getTopFaltas',
+                return view('auth.inicio.index', compact('totalVehiculos','totalCarrosActivos','totalTickets','TotalTicketsPorDia',
                     'fechaDesde', 'fechaHasta'));
             }
         
@@ -101,23 +100,6 @@ class InicioController extends Controller
 
         
 
-
-
-        // segundo grafico tardanzas
-        private function getTopFaltas($fecha_desde, $fecha_hasta)
-        {
-            return DB::table('asistencias as a')
-                ->whereBetween('a.created_at', [$fecha_desde, $fecha_hasta])
-                ->join('empleados as e', 'a.dni', '=', 'e.dni')
-                ->whereNull('a.hora_entrada') // Considerar solo faltas cuando hora_entrada es NULL
-                ->where('estado', '1') 
-                ->whereNull('a.deleted_at') // Excluye asistencias eliminadas
-                ->selectRaw('e.dni as empleado, e.nombre, COUNT(*) as faltas')
-                ->groupBy('e.dni', 'e.nombre')
-                ->orderBy('faltas', 'desc')
-                ->limit(10)
-                ->get();
-        }
         
 
         

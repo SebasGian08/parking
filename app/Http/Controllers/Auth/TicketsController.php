@@ -123,7 +123,7 @@ class TicketsController extends Controller
 
         // Validación de los campos
         $validator = Validator::make($request->all(), [
-            'id' => 'nullable|exists:tickets,id',
+            /* 'id' => 'nullable|exists:tickets,id', */
             'vehiculo_id' => 'required',
             'user_id' => 'required',
             'tiempo_inicio' => 'required',
