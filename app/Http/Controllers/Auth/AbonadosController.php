@@ -56,11 +56,7 @@ class AbonadosController extends Controller
         ]);
     }
     
-    public function list_allContratos()
-    {
-        return response()->json(['data' => Contratos::orderby('id', 'desc')->get()]);
-    }
-
+    
 
     public function update(Request $request)
     {
@@ -137,10 +133,32 @@ class AbonadosController extends Controller
             }
         }
 
-        // Devolver respuesta JSON
-        return response()->json(['Success' => $status, 'Errors' => $validator->errors()]);
+       // Mantener al usuario en la misma página con un mensaje de éxito
+       return back()->with('success', 'Datos guardados correctamente.');
     }
 
+
+    public function list_allContratos()
+    {
+        $contratos = Contratos::with([
+            'abonado' => function ($query) {
+                $query->select('id', 'razon_social');  // Seleccionamos las columnas necesarias de abonados
+            },
+            /* 'vehiculo' => function ($query) {
+                $query->select('id', 'placa');  // Seleccionamos solo la placa del vehículo
+            }, */
+            'plan' => function ($query) {
+                $query->select('id', 'nombre');  // Seleccionamos columnas necesarias de planes
+            },
+            'estacionamiento' => function ($query) {
+                $query->select('id', 'codigo');  // Seleccionamos el código del estacionamiento
+            }
+        ])
+        ->orderBy('id', 'desc')
+        ->get();
+
+        return response()->json(['data' => $contratos]);
+    }
 
 
 

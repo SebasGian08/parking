@@ -16,4 +16,27 @@ class Contratos extends Model
     public $timestamps = false;
 
     protected $dates = ['deleted_at'];
+
+
+    // Contrato.php
+    public function abonado()
+    {
+        return $this->belongsTo(Abonados::class, 'abonado_id');
+    }
+
+    public function vehiculo()
+    {
+        return $this->belongsTo(Vehiculos::class, 'vehiculo_id');
+    }
+
+    public function plan()
+    {
+        return $this->belongsTo(Planes::class, 'plan_id');
+    }
+
+    public function estacionamiento()
+    {
+        return $this->belongsTo(Estacionamiento::class, 'estacionamiento_id');
+    }
+
 }

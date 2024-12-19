@@ -143,6 +143,7 @@
                     </div>
                     <!-- Formulario Contrato -->
                     <div class="tab-pane fade" id="contrato" role="tabpanel" aria-labelledby="contrato-tab">
+
                         <form method="post" action="{{ route('auth.abonados.storeContrato') }}"
                             enctype="multipart/form-data" style="margin-top: 20px;">
                             @csrf
@@ -153,7 +154,7 @@
                                     <!-- Información de la Empresa -->
                                     <input type="hidden" id="abonado_id" name="abonado_id"
                                         value="{{ $Entity != null ? $Entity->id : 0 }}">
-                                    <div class="col-md-1">
+                                    {{-- <div class="col-md-1">
                                         @if ($empresa && $empresa->logo)
                                             <a href="{{ route('auth.inicio') }}" class="logo">
                                                 <span class="logo-m">
@@ -162,7 +163,7 @@
                                                 </span>
                                             </a>
                                         @endif
-                                    </div>
+                                    </div> --}}
                                     <div class="col-md-7 text-left mb-4">
                                         <h2>{{ isset($empresa) && $empresa ? $empresa->nombre : 'Empresa no disponible' }}
                                         </h2>
@@ -333,40 +334,41 @@
                 info: false,
                 buttons: [],
                 ajax: {
-                    url: "/auth/abonados/list_all",
+                    url: "/auth/abonados/list_allContratos",
+                    dataSrc: 'data', // Indica que los datos están bajo el campo "data"
                 },
                 columns: [{
                         title: "ID",
                         data: "id",
-                        className: "text-center"
+                        className: "text-center",
+                        render: function(data) {
+                            return 'C-' + String(data).padStart(5,
+                                '0'); // Formatea el id con el prefijo 'C-' y 5 dígitos
+                        }
                     },
                     {
-                        title: "TIPO DOCUMENTO",
-                        data: "tipo_documento.Nombre",
+                        title: "Razon Social", // Abonado
+                        data: "abonado.razon_social",
                     },
                     {
-                        title: "TIPO DOCUMENTO",
-                        data: "num_doc"
+                        title: "Placa", // Vehículo
+                        data: "vehiculo_id",
                     },
                     {
-                        title: "RAZON SOCIAL",
-                        data: "razon_social"
+                        title: "Estacionamiento", // Estacionamiento
+                        data: "estacionamiento.codigo",
                     },
                     {
-                        title: "DIRECCION",
-                        data: "direccion"
+                        title: "Plan", // Plan
+                        data: "plan.nombre",
                     },
                     {
-                        title: "TELEFONO",
-                        data: "tel"
+                        title: "Fecha de Inicio", // Plan - fecha_inicio
+                        data: "fecha_inicio",
                     },
                     {
-                        title: "EMAIL",
-                        data: "email"
-                    },
-                    {
-                        title: "OBSERVACIONES",
-                        data: "observaciones"
+                        title: "Fecha de Fin", // Plan - fecha_fin
+                        data: "fecha_fin",
                     },
                     {
                         title: "Estado",
@@ -395,8 +397,10 @@
                         searchable: false,
                         width: "150px",
                     },
+
                 ],
             });
+
 
             $table.on("click", ".btn-update", function() {
                 const id = $dataTableAbonados.row($(this).parents("tr")).data().id;

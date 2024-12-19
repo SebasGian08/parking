@@ -27,21 +27,22 @@
         }
 
         .content-wrapper:before {
-            background: radial-gradient(circle, rgba(0, 114, 191, 1) 37%, rgba(0, 195, 244, 1) 100%);
-            /* background-color: #2ecc71; */
+           /*  background: radial-gradient(circle, rgba(0, 114, 191, 1) 37%, rgba(0, 195, 244, 1) 100%); */
+            background-color: #242e42;
         }
 
         .main-nav {
-            background: radial-gradient(circle, rgba(0, 114, 191, 1) 37%, rgba(0, 195, 244, 1) 100%);
-           /*  background-color: #2ecc71; */
+            /* background: radial-gradient(circle, rgba(0, 114, 191, 1) 37%, rgba(0, 195, 244, 1) 100%); */
+            background-color: #242e42;
         }
 
         .active-item-here {
-            color: #007bff;
+            color: #242e42;
         }
+        
 
         .table thead {
-            background-color: #007bff;
+            background-color: #242e42;
         }
 
         .btn-secondary {
@@ -67,7 +68,7 @@
         }
 
         .modal.modal-fill .modal-dialog .modal-header {
-            background-color: #FFA500;
+            background-color: #262626;
         }
 
         .modal.modal-fill {
@@ -128,7 +129,7 @@
                     <a href="{{ route('auth.inicio') }}" class="logo">
                         <span class="logo-m">
                             <img src="{{ asset($empresa->logo) }}" alt="Logo de la Empresa" class="light-logo"
-                                style="max-width: 50px; max-height: 150px;">
+                                style="max-width: 200px; max-height: 150px;">
                         </span>
                     </a>
                 @endif
@@ -246,7 +247,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="nav-item {{ Route::currentRouteName() == 'auth.inicio' ? 'active' : '' }}">
+                            <li class="nav-item {{ Route::currentRouteName() == 'auth.abonados' ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('auth.abonados') }}"><span
                                         class="active-item-here"></span>
                                     <i class="fa fa-bar-chart"></i> <span>Abonados</span>

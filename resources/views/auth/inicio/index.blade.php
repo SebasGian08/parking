@@ -30,41 +30,44 @@
 
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-3 mb-4">
+                <div class="col-lg-12 mb-4">
                     <div class="container rounded"
-                        style="background-color: #ffffff; padding: 20px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); text-align: center;
-                        border-radius:35px !important;">
+                        style="background-color: #ffffff9f; padding: 20px;
+                        border-radius:5px !important;">
                         <form id="filtro-form" action="{{ route('auth.inicio') }}" method="GET">
-                            <div class="form-group">
-                                <label for="fecha_desde" class="m-0 label-primary">Mostrar desde</label>
-                                <input type="date" class="form-control form-control-sm" id="fecha_desde"
-                                    name="fecha_desde" value="{{ request()->input('fecha_desde', date('Y-m-d')) }}">
-                                @error('fecha_desde')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="fecha_hasta" class="m-0 label-primary">Mostrar hasta</label>
-                                <input type="date" class="form-control form-control-sm" id="fecha_hasta"
-                                    name="fecha_hasta" value="{{ request()->input('fecha_hasta', date('Y-m-d')) }}">
-                                @error('fecha_hasta')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group mt-3">
-                                <button type="submit" id="filtro-submit" class="btn btn-primary btn-sm"
-                                    style="border-color: #2ecc71; border-radius: 5px;">Aplicar Filtro</button>
-                                <div id="loading" style="display: none;">
-                                    Cargando...
+                            <div class="row">
+                                <div class="form-group col-lg-5 mb-4">
+                                    <label for="fecha_desde" class="m-0 label-primary">Mostrar desde</label>
+                                    <input type="date" class="form-control form-control-sm" id="fecha_desde"
+                                        name="fecha_desde" value="{{ request()->input('fecha_desde', date('Y-m-d')) }}">
+                                    @error('fecha_desde')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-lg-5 mb-4">
+                                    <label for="fecha_hasta" class="m-0 label-primary">Mostrar hasta</label>
+                                    <input type="date" class="form-control form-control-sm" id="fecha_hasta"
+                                        name="fecha_hasta" value="{{ request()->input('fecha_hasta', date('Y-m-d')) }}">
+                                    @error('fecha_hasta')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-lg-2 mb-4">
+                                    <button type="submit" id="filtro-submit" class="btn btn-primary btn-sm col-lg-12 mb-4"
+                                        style="border-radius: 5px;margin-top:50px;">Aplicar Filtro</button>
+                                    <div id="loading" style="display: none;">
+                                        Cargando...
+                                    </div>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
+                
                 {{-- Remaining content (totals) goes here --}}
                 <div class="col-lg-3 mb-4 zoom-container">
                     <div class="totales text-center"
-                        style="background: linear-gradient(to bottom right, #0047b1, #0066ff);">
+                        style="background: linear-gradient(to bottom right, #242e42, #41516f);">
                         <div class="title">
                             <p class="title-text" style="color:rgb(255, 255, 255)">
                                 Total de Vehiculos
@@ -89,7 +92,7 @@
                 </div>
                 <div class="col-lg-3 mb-4 zoom-container">
                     <div class="totales text-center"
-                        style="background: linear-gradient(to bottom right, #0047b1, #0066ff);">
+                        style="background: linear-gradient(to bottom right, #242e42, #41516f);">
                         <div class="title">
                             <p class="title-text" style="color:rgb(255, 255, 255)">
                                 Total de carros activos
@@ -114,7 +117,7 @@
                 </div>
                 <div class="col-lg-3 mb-4 zoom-container">
                     <div class="totales text-center"
-                    style="background: linear-gradient(to bottom right, #0047b1, #0066ff);">
+                        style="background: linear-gradient(to bottom right, #242e42, #41516f);">
                         <div class="title">
                             <p class="title-text" style="color:rgb(255, 255, 255)">
                                 Total de Tickets
